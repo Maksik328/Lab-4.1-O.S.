@@ -35,7 +35,7 @@ class AssignmentService {
         return this.assignments;
     }
 
-    getSubmissions(assignmentId: number) {
+    getSubmissions(assignmentId: number): StudentSubmission[] {
         return this.submissions.filter(
             (submission) => submission.assignmentId === assignmentId
         );
