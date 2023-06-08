@@ -10,6 +10,7 @@ export interface Assignment {
 export interface StudentSubmission {
 	assignmentId: number;
 	studentId: number;
+	studentName: string;
 	submittedAt: Date;
 	content: string;
 }

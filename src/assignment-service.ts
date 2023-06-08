@@ -2,26 +2,44 @@ import { Assignment, StudentSubmission } from "./assignment";
 
 //Control assignment and submission proccess
 class AssignmentService {
-	private assignments: Assignment[] = [];
-	private submissions: StudentSubmission[] = [];
+    private assignments: Assignment[] = [];
+    private submissions: StudentSubmission[] = [];
 
-	createAssignment(assignment: Assignment) {
-		this.assignments.push(assignment);
-	}
+    createAssignment(assignment: Assignment) {
+        this.assignments.push(assignment);
+    }
 
-	submitAssignment(submission: StudentSubmission) {
-		this.submissions.push(submission);
-	}
+    updateAssignment(assignmentId: number, updatedAssignment: Assignment) {
+        const assignmentIndex = this.assignments.findIndex(
+            (assignment) => assignment.id === assignmentId
+        );
+        if (assignmentIndex !== -1) {
+            this.assignments[assignmentIndex] = {
+                ...this.assignments[assignmentIndex],
+                ...updatedAssignment,
+            };
+        }
+    }
 
-	getAssignments() {
-		return this.assignments;
-	}
+    deleteAssignment(assignmentId: number) {
+        this.assignments = this.assignments.filter(
+            (assignment) => assignment.id !== assignmentId
+        );
+    }
 
-	getSubmissions(assignmentId: number) {
-		return this.submissions.filter(
-			(submission) => submission.assignmentId === assignmentId
-		);
-	}
+    submitAssignment(submission: StudentSubmission) {
+        this.submissions.push(submission);
+    }
+
+    getAssignments() {
+        return this.assignments;
+    }
+
+    getSubmissions(assignmentId: number) {
+        return this.submissions.filter(
+            (submission) => submission.assignmentId === assignmentId
+        );
+    }
 }
 
 export default AssignmentService;
